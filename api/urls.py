@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from core.views import BookViewSet, AuthorViewSet
+from core.views.author_view import AuthorViewSet
+from core.views.book_view import BookViewSet
 
 
 router = routers.DefaultRouter()

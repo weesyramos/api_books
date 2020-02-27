@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            with open(f'{os.path.dirname(os.path.abspath(__file__))}\\authors.csv', 'r', encoding='utf-16') as file:
+            with open(f'{os.path.dirname(os.path.abspath(__file__))}/authors.csv', 'r', encoding='utf-16') as file:
                 reader = csv.DictReader(file)
                 for line in reader:
                     AuthorModel.create_author(name=line['name'])

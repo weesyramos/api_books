@@ -2,7 +2,7 @@ from django.db import models
 
 
 class AuthorModel(models.Model):
-    name = models.CharField(max_length=255) 
+    name = models.CharField(max_length=255, blank=False) 
 
     def __str__(self):
         return self.name
@@ -18,9 +18,9 @@ class AuthorModel(models.Model):
 
 
 class BookModel(models.Model):
-    name = models.CharField(max_length=255)
-    edition = models.CharField(max_length=255)
-    publication_year = models.CharField(max_length=4)
+    name = models.CharField(max_length=255, blank=False)
+    edition = models.CharField(max_length=255, blank=False)
+    publication_year = models.CharField(max_length=4, blank=False)
     authors = models.ManyToManyField(AuthorModel)
 
     def __str__(self):
