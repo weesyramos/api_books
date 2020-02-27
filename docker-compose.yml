@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver
+    container_name: api_olist
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
