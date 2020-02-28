@@ -2,3 +2,6 @@ django
 djangorestframework
 markdown
 django-filter
+python-decouple
+dj-database-url
+dj-static
