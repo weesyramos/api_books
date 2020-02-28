@@ -22,13 +22,16 @@ class AuthorViewSet(ModelViewSet):
         return paginator.get_page(page_number)
 
     def create(self, request, *args, **kwargs):
-        name = request.data['name']
+        name = request.data['name'] if 'name' in request.data else None
+        if not name:
+            return Response({'error': 'empty name'}, status=204)
+
         name = validate_name(name)
         if name:
             author = AuthorModel.objects.create(name=name)
             serializer = AuthorSerializer(author)
             return Response(serializer.data)
-        return Response({'error': 'name invalid'}, status=422)
+        return Response({'error': 'invalid name'}, status=422)
 
     def update(self, request, pk=None):
         name = request.data['name']
@@ -42,7 +45,7 @@ class AuthorViewSet(ModelViewSet):
                 return Response(serializer.data)
             except:
                 return Response({'error': 'author not found'}, status=404)
-        return Response({'error': 'name invalid'}, status=422)
+        return Response({'error': 'invalid name'}, status=422)
 
 
     def partial_update(self, request, pk=None):
@@ -57,4 +60,4 @@ class AuthorViewSet(ModelViewSet):
                 return Response(serializer.data)
             except:
                 return Response({'error': 'author not found'}, status=404)
-        return Response({'error': 'name invalid'}, status=422)
+        return Response({'error': 'invalid name'}, status=422)
